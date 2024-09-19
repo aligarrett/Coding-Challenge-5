@@ -12,7 +12,43 @@ console.log(inventory);
 
 // Task 2: Create an Orders Array of Order Objects
 
-let orders = [];
+const orders = [];
 
 // Results:
 console.log(orders);
+
+// Task 3: Create a Function to Place an Order
+
+function placeOrder(customerName, items) {
+    // Check if all items have enough stock
+    for (const item of items) {
+      const product = inventory.find(p => p.name === item.name);
+      if (!product || product.quantity < item.quantity) {
+        console.log(`Not enough stock for ${item.name}`);
+        return; // Stop the function if stock is insufficient
+      }
+    }
+  
+    // Update inventory and add the order
+    items.forEach(item => {
+      const product = inventory.find(p => p.name === item.name);
+      product.quantity -= item.quantity;
+    });
+  
+    // Add the new order to the orders array
+    orders.push({
+      customerName,
+      items,
+      status: 'Pending'
+    });
+  
+    console.log('Order placed successfully for', customerName);
+  }
+  
+  // Example usage:
+  placeOrder('Joe Exotic', [{ name: 'Frappe', quantity: 2 }, { name: 'Latte', quantity: 1 }]);
+  placeOrder('Carol Baskin', [{ name: 'Americano', quantity: 25 }]); // Not enough stock
+  
+  // Results:
+  console.log('Updated Inventory:', inventory);
+  console.log('Orders:', orders);
