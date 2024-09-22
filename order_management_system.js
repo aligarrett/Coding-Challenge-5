@@ -71,3 +71,21 @@ function placeOrder(customerName, items) {
   
   // Example usage of calculateOrderTotal function
   console.log(`Total for ${orders[0].customerName}'s order: $${calculateOrderTotal(orders[0]).toFixed(2)}`);
+
+  // Task 5: Create a Function to Mark an Order as Completed
+
+  function completeOrder(customerName) {
+    // Find the order for the given customer name
+  const order = orders.find(o => o.customerName === customerName);
+  
+  if (order) {
+    order.status = 'Completed'; // Update the order status
+    console.log(`Order for ${customerName} marked as completed.`);
+  } else {
+    console.log(`Order not found for ${customerName}.`); // Log error if not found
+  }
+}
+
+// Example usage:
+completeOrder('Joe Exotic'); // This will mark Joe's order as completed
+completeOrder('Unknown Customer'); // This will log an error message
