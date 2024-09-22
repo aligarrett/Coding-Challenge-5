@@ -89,3 +89,25 @@ function placeOrder(customerName, items) {
 // Example usage:
 completeOrder('Joe Exotic'); // This will mark Joe's order as completed
 completeOrder('Unknown Customer'); // This will log an error message
+
+// Task 6: Create a Function to Check Pending Orders
+
+function checkPendingOrders() {
+    // Filter and log all pending orders
+    const pendingOrders = orders.filter(order => order.status === 'Pending');
+    
+    if (pendingOrders.length === 0) {
+      console.log('No pending orders.');
+    } else {
+      pendingOrders.forEach(order => {
+        console.log(`Order for ${order.customerName}:`);
+        order.items.forEach(item => {
+          console.log(` - ${item.quantity} x ${item.name}`);
+        });
+        console.log(`Status: ${order.status}`);
+      });
+    }
+  }
+  
+  // Example usage:
+  checkPendingOrders(); // Logs all pending orders, if any
